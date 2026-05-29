@@ -13,7 +13,7 @@ import vista.VentanaEmpresa;
 public class EmpresaControlador implements ActionListener{
 private VentanaEmpresa vista;
     
-    // Nuestro "Arreglo de tipo clase" para simular la persistencia de datos en memoria
+    
     private Cliente[] clientesDB;
     private int contadorClientes;
 
@@ -22,7 +22,6 @@ private VentanaEmpresa vista;
         this.clientesDB = new Cliente[100]; // Soporta hasta 100 empresas registradas
         this.contadorClientes = 0;
         
-        // Enlazar eventos de la vista
         this.vista.conectarControlador(this);
     }
 
@@ -34,7 +33,6 @@ private VentanaEmpresa vista;
     }
 
     private void registrarEmpresa() {
-        // 1. Extraer los datos ingresados en el Frontend (Swing)
         String ruc = vista.txtRuc.getText();
         String razonSocial = vista.txtRazonSocial.getText();
         String email = vista.txtEmail.getText();
@@ -48,18 +46,16 @@ private VentanaEmpresa vista;
             return;
         }
 
-        // 2. Generar clave automática (Requerimiento del caso de estudio)
+        // Generar clave automática 
         String claveAutogenerada = "EMP" + (new Random().nextInt(9000) + 1000);
 
-        // 3. Crear instancias de nuestro Modelo
         Rubro rubroObjeto = new Rubro(rubroSeleccionado, true);
         Cliente nuevoCliente = new Cliente(ruc, razonSocial, email, contacto, telefono, claveAutogenerada, rubroObjeto);
 
-        // 4. Almacenar en nuestro arreglo simulado
         if (contadorClientes < clientesDB.length) {
             clientesDB[contadorClientes++] = nuevoCliente;
             
-            // 5. Actualizar el Frontend con la respuesta
+            //Actualizar el Frontend con la respuesta
             actualizarListaVista();
             limpiarCampos();
             

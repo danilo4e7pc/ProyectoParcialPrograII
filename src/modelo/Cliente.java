@@ -7,7 +7,7 @@ public class Cliente {
     private String contacto;
     private String telefono;
     private String clave;
-    private Rubro rubro; // Asociación simple
+    private Rubro rubro; 
     
     private Oferta[] ofertas;
     private int contadorOfertas;

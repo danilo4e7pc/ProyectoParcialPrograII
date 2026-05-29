@@ -9,7 +9,7 @@ public class Postulacion {
     private Oferta oferta; // Asociación con Oferta
 
     public Postulacion(Oferta oferta) {
-        this.fecha = new Date(); // Fecha y hora actual de postulación
+        this.fecha = new Date(); 
         this.anulado = false;
         this.oferta = oferta;
     }
