@@ -45,6 +45,18 @@ private VentanaEmpresa vista;
             JOptionPane.showMessageDialog(vista, "Por favor complete los campos obligatorios (RUC, Razón Social y Email).");
             return;
         }
+        
+        if (!email.contains("@") || !email.contains(".")) {
+            JOptionPane.showMessageDialog(vista, "ERROR: El correo electrónico ingresado no tiene un formato válido (ejemplo@empresa.com).", "Error de Email", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        for (int i = 0; i < contadorClientes; i++) {
+            if (clientesDB[i].getRUC().equals(ruc)) {
+                JOptionPane.showMessageDialog(vista, "ERROR: Ya existe una empresa registrada con este número de RUC.", "Empresa Duplicada", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
 
         // Generar clave automática 
         String claveAutogenerada = "EMP" + (new Random().nextInt(9000) + 1000);
